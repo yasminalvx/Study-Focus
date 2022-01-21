@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <!-- Meta tags -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Link Unicons -->
+    <!-- <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css"> -->
+
+    <!-- Style CSS -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <title>Study Focus: Pomodoro timer e Lista de Tarefas</title>
+</head>
+<body onload="list_update()">
+
+    <header>
+        <h1>Study Focus</h1>
+
+        <h3 class="time-now"></h3>
+
+    </header>
+
+    <main>
+        <div id="timer-options">
+            <nav>
+                <ul>
+                    <li onclick="time_start_change(50)">50min</li>
+                    <li onclick="time_start_change(25)">25min</li>
+                    <li onclick="time_start_change(15)">15min</li>
+                    <li onclick="time_start_change(5)">5min</li>
+                </ul>
+            </nav>
+
+            <h2 id="timer">25:00</h2>
+
+            <button onclick="timer()">Iniciar</button>
+
+        </div>
+
+        <div class="to-do_list">
+            <h2>Tarefas</h2>
+
+            <!-- <div><i class="uil uil-check-circle"></i></div> -->
+
+            <ul id="tasks">
+                
+            </ul>
+
+            <!-- <li>Colocar comida pro cachorro</li>
+                <li>Entregar relatório de Física</li>
+                <li>Ligar pra Fulano</li>
+                <li>Ver caixa de E-mail</li> -->
+
+            <div class="add_task">
+                <!-- <span><i class="uil uil-plus-circle"></i></span> -->
+    
+                <input type="text" placeholder="Adicionar Tarefa" id="task">
+                <button onclick="add_task()">+</button>
+
+                
+            </div>
+
+        </div>
+
+    </main>
+
+    <footer>
+        <p>Desenvolvido por: <a href="">Yasmin Alves</a></p>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>
