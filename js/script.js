@@ -78,7 +78,7 @@ function timer() {
             str_seg += seg;
         }
 
-        if ((min == 24 && seg <= 50) || action == "Stop" || action == "Reiniciar") {
+        if ((min == 0 && seg <= 0) || action == "Stop" || action == "Reiniciar") {
             stop(second);
             document.getElementById("start-button").innerText = "Reiniciar";
             console.log("contagem");
