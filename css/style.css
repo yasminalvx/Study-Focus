@@ -1,0 +1,384 @@
+/*============== Font Family ==============*/
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap');
+
+/*============== Reset CSS ==============*/
+* {
+    margin: 0;
+    padding: 0;
+    text-decoration: 0;
+}
+
+body {
+    font-family: 'Poppins';
+    background-color: var(--bg-body);
+    min-height: 100vh;
+}
+
+html {
+    font-size: 20px;
+}
+
+/*============== Variables ==============*/
+:root {
+    /* ======= Colors =======*/
+    --hue-color: 230;
+
+    --bg-body: #f7f5ff;
+    --bg-header: #fafbff;
+    --bg-timer: hsla(var(--hue-color), 60%, 77%, 1);
+    --bg-timer-select: hsla(var(--hue-color), 60%, 62%, 1);
+    --color-button: hsla(var(--hue-color), 60%, 62%, 1);
+
+    /* ======= Font Weight =======*/
+    --w-light: 300;
+    --w-regular: 400;
+    --w-medium: 500;
+
+    /* ======= Font Size =======*/
+    /* 1rem = 20px, 1.1rem = 22px, 1.2rem = 24px, 1.4rem = 28px, 1.5rem = 30px */
+    --font-size-h1: 1.5rem;
+    --font-size-h2: 1.4rem;
+    --font-size-h3: 1.2rem;
+    --font-size-timer-option: 1.2rem;
+    --font-size-task: 1.1rem;
+    --font-size-footer: 1rem;
+
+    /* ======= Width & Height =======*/
+
+    --height-header-footer: 4.9rem;
+    --width-timer: 34.6rem;
+    --height-timer: 21rem;
+    --width-button: 9.9rem;
+    --height-button: 3.75rem;
+    --width-timer-select: 5.56rem;
+    --height-timer-select: 2.5rem;
+    --width-to-do-list: 24.65rem;
+    --width-input-task: 12.95rem;
+    --height-input-task: 3rem;
+
+    /* ======= Margin & Padding =======*/
+    --m-10: 0.5rem;
+    --m-15: 0.75rem;
+    --m-19: 0.95rem;
+    --m-24: 1.2rem;
+    --m-26: 1.3rem;
+    --m-32: 1.6rem;
+    --m-44: 2.2rem;
+    --m-58: 2.9rem;
+    --m-89: 4.45rem;
+
+}
+
+/*============== Container ==============*/
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    width: calc(100vw - 82px);
+}
+
+/*============== Header ==============*/
+
+header {
+    display: flex;
+    justify-content: center;
+    height: var(--height-header-footer);
+    background-color: var(--bg-header);
+    box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    font-weight: var(--w-medium);
+    font-size: var(--font-size-h1);
+    margin-bottom: var(--m-24);
+    letter-spacing: 0.05em;
+}
+
+header h3 {
+    font-weight: var(--w-regular);
+    font-size: var(--font-size-h3);
+    margin-bottom: var(--m-26);
+    letter-spacing: 0.05em;
+}
+
+/*============== Main ==============*/
+
+main {
+    min-height: calc(100vh - 2*var(--height-header-footer));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+main .container {
+    max-height: 100%;
+}
+/*============== Timer ==============*/
+
+.timer {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    background-color: var(--bg-timer);
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.25);
+    border-radius: 9px;
+    width: var(--width-timer);
+    height: var(--height-timer);
+    color: #fff;
+}
+
+#timer-options nav ul {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 0 3.7rem;
+}
+
+#timer-options nav ul li {
+    height: var(--height-timer-select);
+    width: var(--width-timer-select);
+    margin-top: var(--m-44);
+    font-size: var(--font-size-timer-option);
+    font-weight: var(--w-regular);
+    letter-spacing: 0.02em;
+    text-align: center;
+    line-height: var(--height-timer-select);
+}
+
+#timer-options nav ul li:hover, #timer-options nav ul li:active {
+    width: var(--width-timer-select);
+    height: var(--height-timer-select);
+    background-color: var(--bg-timer-select);
+    border-radius: 10px;
+}
+
+h2#timer {
+    font-size: 4.8rem;
+    font-weight: var(--w-medium);
+    text-align: center;
+    letter-spacing: 0.115em;
+    margin-top: var(--m-44);
+}
+
+.timer button {
+    margin-top: var(--m-19);
+    margin-bottom: var(--m-58);
+    width: var(--width-button);
+    max-width: var(--width-timer);
+    height: var(--height-button);
+    align-self: center;
+    background-color: #fff;
+    color: var(--color-button);
+    font-size: var(--font-size-h2);
+    border: none;
+    box-shadow: 4px 4px 4px rgba(116, 116, 116, 0.25);
+    border-radius: 6px;
+}
+
+/*============== Tasks ==============*/
+
+.to-do_list {
+    align-self: flex-start;
+    width: var(--width-to-do-list);
+    margin: var(--m-32) 0;
+    display: flex;
+    flex-direction: column; 
+}
+
+.to-do_list h2 {
+    font-size: var(--font-size-h2);
+    font-weight: var(--w-medium);
+    letter-spacing: 0.05em;
+    margin-bottom: var(--m-10);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.6);
+}
+
+#tasks {
+    margin-top: var(--m-44);
+}
+
+#tasks li {
+    font-size: var(--font-size-task);
+    font-weight: var(--w-light);
+    list-style: none;
+    line-height: 30px;
+    margin-bottom: var(--m-15);
+}
+
+#tasks li button {
+    border: none;
+    width: 30px;
+    height: 30px;
+    background-color: transparent;
+    color: transparent;
+}
+
+.check {
+    background-image: url(../img/check-circle.svg);
+    margin-right: 5px;
+}
+
+.checked {
+    text-decoration-line: line-through;
+}
+
+.delete {
+    margin-right: var(--m-24);
+    background-image: url(../img/times-circle.svg);
+}
+
+/*============== Add Tasks ==============*/
+
+#task {
+    font-weight: var(--w-light);
+    padding-left: var(--m-26);
+    font-size: var(--font-size-task);
+    border: none;
+    width: var(--width-input-task);
+    height: var(--height-input-task);
+    background: #EEEEEE;
+    box-shadow: inset 0px 0px 4px rgba(0, 0, 0, 0.16);
+    border-radius: 4px;
+}
+
+.add_task {
+    margin-left: var(--m-89);
+    margin-top: var(--m-32);
+}
+
+.add_task button {
+    border: none;
+    width: 36px;
+    height: 36px;
+    background-color: transparent;
+    color: transparent;
+    margin-left: var(--m-10);
+    background-image: url(../img/plus-circle.svg);
+}
+
+/*============== Footer ==============*/
+
+footer {
+    background-color: var(--bg-header);
+    box-shadow: 0px -3px 4px rgba(0, 0, 0, 0.1);
+    font-size: var(--font-size-footer);
+
+}
+
+footer .container {
+    height: var(--height-header-footer);
+    font-weight: var(--w-regular);
+    justify-content: center;
+    align-items: center;
+}
+
+footer a {
+    color: #000;
+}
+
+footer a:hover {
+    color: rgb(122, 74, 255);
+}
+
+@media screen and (max-width: 1355px) {
+    header .container {
+        width: 40rem;
+    }
+
+    main .container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .timer {
+        margin-top: var(--m-44);
+    }
+    
+    .to-do_list {
+        margin-top: var(--m-44);
+        width: var(--width-timer);
+        align-self: center;
+    }
+}
+
+@media screen and (max-width: 890px) {
+    .container {
+        width: auto;
+    }
+
+    header .container {
+        width: calc(100vw - 82px);
+    }
+
+    #timer-options nav ul {
+        margin: 0 1.8rem;
+    }
+
+    .timer {
+        width: calc(100vw - 82px);
+    }
+    
+    .to-do_list {
+        width: calc(100vw - 82px);
+    }
+
+    .add_task {
+        margin-left: 1.5rem;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    header h1, header h3 {
+        font-size: 1rem;
+        letter-spacing: 0.05em;
+    }
+
+    h2#timer {
+        font-size: 3.2rem;
+    }
+
+    #timer-options nav ul li {
+        font-size: 0.9rem;
+        margin-top: 1rem;
+    }
+
+    header .container {
+        width: calc(100% - 82px);
+    }
+
+    main .container {
+        justify-content: center;
+    }
+
+    .timer {
+        width: 17rem;
+        height: auto;
+    }
+
+    .timer button {
+        font-size: 0.9rem;
+        width: 6.75rem;
+        height: 2.5rem;
+    }
+    
+    .to-do_list {
+        width: 17rem;
+    }
+
+    .to-do_list h2 {
+        font-size: 1rem;
+    }
+
+    #tasks li {
+        font-size: .9rem;
+    }
+
+    .add_task {
+        margin-left: 0;
+    }
+}
+

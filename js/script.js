@@ -37,12 +37,36 @@ function time_start_change(time_start) {
     document.getElementById("timer").innerHTML = time_start + ":00";
 }
 
+function start() {
+    let action = document.getElementById("start-button").innerText;
+    console.log(action);
+
+    if (action == "Parar") {
+        document.getElementById("start-button").innerText = "Reiniciar";
+    }
+    else if (action == "Iniciar") {
+        timer();
+        document.getElementById("start-button").innerText = "Parar";
+    }
+    else if (action == "Reiniciar") {
+        // console.log("Aqui 3");
+        document.getElementById("start-button").innerText = "Iniciar";
+        document.getElementById("timer").innerHTML = "25:00";
+
+    }
+}
+
 //Funcionamento do temporizador pomodoro
 function timer() {
     let time_initial = document.getElementById("timer").innerText;
-    var time_total = time_initial.split(':')[0] * 60;
+    var time_total = time_initial.split(':')[0] * 60 - 1;
+
 
     let second = setInterval(() => {
+
+        action = document.getElementById("start-button").innerText;
+        console.log(action);
+
         let min = Math.floor(time_total / 60);
         let seg = time_total % 60;
 
@@ -54,33 +78,47 @@ function timer() {
             str_seg += seg;
         }
 
-        time_total -= 1;
+        if ((min == 24 && seg <= 50) || action == "Stop" || action == "Reiniciar") {
+            stop(second);
+            document.getElementById("start-button").innerText = "Reiniciar";
+            console.log("contagem");
+        } 
 
-        if (min == 0 && seg == 0) {
-            stop();
-        }
+        time_total -= 1;
 
         document.getElementById("timer").innerText = min + ":" + str_seg;
         
     }, 1000);
+    
+}
 
-    function stop(){
-        clearInterval(second);
-    }
+function stop(interval){
+    console.log("PARAR")
+    clearInterval(interval);
 }
 
 //Adicionar Nova Tarefa
 function add_task() {
     let li = document.createElement("li");
-    let input_value = document.getElementById("task").value;
-    let t = document.createTextNode(input_value);
-    li.appendChild(t);
+
+    let check = document.createElement("button");
+
+    check.innerHTML = "v";
+    check.className = "check";
+    check.onclick = checked;
+    li.appendChild(check);
 
     let del = document.createElement("button");
+        
     del.innerHTML = "x";
+    del.className = "delete";
     del.onclick = delete_task;
     li.appendChild(del);
 
+
+    let input_value = document.getElementById("task").value;
+    let t = document.createTextNode(input_value);
+    li.appendChild(t);
 
     if (input_value === '') {
         alert("Tarefa vazia");
@@ -105,13 +143,8 @@ function delete_task(){
 
     let task = this.parentElement.innerText;
 
-    //remover x do botão
-    let str_task = "";
-    for (i = 0; i < task.length-1; i++) { 
-        str_task += task[i];
-    }
+    let key = find_key(task);
 
-    let key = find_key(str_task);
     let size = localStorage.length; 
 
     localStorage.removeItem(key);
@@ -126,13 +159,38 @@ function delete_task(){
 
 //Achar chave da tarefa
 function find_key(key_value) {
+    let str_task = "";
+    for (i = 2; i <= key_value.length-1; i++) { 
+        str_task += key_value[i];
+    }
+
     let size = localStorage.length;
+    console.log(key_value);
 
     for (let i = 1; i <= size; i++) {
-        if(key_value == localStorage.getItem(i)) {
+        if(str_task == localStorage.getItem(i)) {
             return i;
         }
     }
+}
+
+function checked() {
+    console.log(this.parentElement.innerText);
+
+    let task = this.parentElement.innerText;
+    
+    let key = find_key(task);
+    let size = localStorage.length;
+    localStorage.removeItem(key);
+
+    for (let i = key; i < size; i++) {
+        let next = localStorage.getItem(i+1);
+        localStorage.setItem(i, next);
+    }
+    localStorage.removeItem(size);
+
+    this.parentElement.className = "checked";
+    this.parentElement.children[0].remove();
 }
 
 //Atualizar lista de tarefas recuperando do localStorage
@@ -141,16 +199,27 @@ function list_update(){
 
     for (let i = 1; i <= size; i++) {
         let li = document.createElement("li");
-        let input_value = localStorage.getItem(i);
-        let t = document.createTextNode(input_value);
-        li.appendChild(t);
+
+        let check = document.createElement("button");
+
+        check.innerHTML = "v";
+        check.className = "check";
+        check.onclick = checked;
+        li.appendChild(check);
 
         let del = document.createElement("button");
         
         del.innerHTML = "x";
+        del.className = "delete";
         del.onclick = delete_task;
         li.appendChild(del);
+
+
+        let input_value = localStorage.getItem(i);
+        let t = document.createTextNode(input_value);
+        li.appendChild(t);
         
         document.getElementById("tasks").appendChild(li);
     }  
 }
+
