@@ -18,6 +18,11 @@ html {
     font-size: 20px;
 }
 
+button {
+    cursor: pointer;
+}
+
+
 /*============== Variables ==============*/
 :root {
     /* ======= Colors =======*/
@@ -139,6 +144,7 @@ main .container {
 }
 
 #timer-options nav ul li {
+    cursor: pointer;
     height: var(--height-timer-select);
     width: var(--width-timer-select);
     margin-top: var(--m-44);
