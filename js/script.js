@@ -165,7 +165,6 @@ function find_key(key_value) {
     }
 
     let size = localStorage.length;
-    console.log(key_value);
 
     for (let i = 1; i <= size; i++) {
         if(str_task == localStorage.getItem(i)) {
@@ -175,7 +174,6 @@ function find_key(key_value) {
 }
 
 function checked() {
-    console.log(this.parentElement.innerText);
 
     let task = this.parentElement.innerText;
     
