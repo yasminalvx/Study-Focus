@@ -78,10 +78,13 @@ function timer() {
             str_seg += seg;
         }
 
-        if ((min == 0 && seg <= 0) || action == "Stop" || action == "Reiniciar") {
+        if ((min == 0 && seg == 0) || action == "Stop" || action == "Reiniciar") {
             stop(second);
             document.getElementById("start-button").innerText = "Reiniciar";
-            console.log("contagem");
+            if (min == 0 && seg == 0) {
+                alert("O tempo terminou!");
+                play_song();
+            }
         } 
 
         time_total -= 1;
@@ -90,6 +93,12 @@ function timer() {
         
     }, 1000);
     
+}
+
+function play_song() {
+    let audio = document.getElementsByTagName("audio")[0];
+    audio.currentTime = 0.1;
+    audio.play();
 }
 
 function stop(interval){
